@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials - Forms </title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+        function Introdiv(props) {
+            return (
+                <div className="Intro_Div">
+                    <h1 className="display-4 text-primary">Welcome to React, {props.name}</h1>
+                </div>
+            );
+        }
+        class Functform extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    myval: ''
+                },
+                    this.handleSubmit = this.handleSubmit.bind(this);
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(event) {
+                this.setState({
+                    myval: event.target.value
+                });
+                console.log(event.target.value);
+
+            }
+
+            handleSubmit(event) {
+                alert('A name was submitted: ' + this.state.myval);
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" className="form-control" type="text"
+                            value={this.state.myval} onChange={this.handleChange} /> <br/>
+                        <input type="submit" className="btn btn-success" value="Submit" />
+                    </form>
+                );
+            }
+        }
+        class App extends React.Component {
+            constructor(props) {
+                super(props)
+            }
+            render() {
+                return (
+                    <div>
+                        <Introdiv name="Sara" />
+                        <Functform />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>

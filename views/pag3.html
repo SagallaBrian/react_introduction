@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials</title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+        const userob = {
+            fname: "Brian",
+            sname: "Lwatati",
+            occup: "Programmin",
+            profi: "https://www.api.komplab.com/images/img1.jpeg"
+        };
+        function functionames(usaparam) {
+            if (usaparam) {
+                return usaparam.fname + ' ' + usaparam.sname;
+            }
+            return 'Stranger';
+        }
+        const divelem = (
+            <div>
+                <h1>Hi Mr {functionames(userob)}</h1>
+                <p><img src={userob.profi} /></p>
+            </div>
+        );
+        ReactDOM.render(
+            divelem,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>

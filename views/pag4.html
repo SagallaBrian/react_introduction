@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials</title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+
+        function callbak1(params) {
+            const divelem = React.createElement(
+                'div',
+                { className: 'divelem' },
+                React.createElement(
+                    'h1',
+                    { className: 'fw-normal text-primary' },
+                    'Hi, Mr Brian !',
+                ),
+                React.createElement(
+                    'h2',
+                    {className: 'fw-normal'},
+                    'The time is: ' + new Date().toLocaleTimeString()
+                )
+
+            );
+            ReactDOM.render(
+                divelem,
+                document.getElementById('root')
+            );
+        }
+        setInterval(callbak1, 1000);
+
+    </script>
+</body>
+
+</html>

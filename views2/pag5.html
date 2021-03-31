@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials - State lift </title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+        function Introdiv(props) {
+            return (
+                <div className="Intro_Div">
+                    <h1 className="display-4 text-primary"> State lift </h1>
+                </div>
+            );
+        }
+        function Chekboil(props) {
+            if (props.celsius >= 100) {
+                return <p>The water would boil.</p>;
+            }
+            return <p>The water would not boil.</p>;
+        }
+        class Functform extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    usertemperature: '',
+                }
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(event) {
+                const target = event.target;
+                const name = target.name;
+                this.setState({
+                    [name]: target.value
+                });
+                console.log(target.value)
+
+            }
+
+
+            render() {
+                return (
+                    <div>
+                        <Chekboil celsius={parseFloat(this.state.usertemperature)} />
+                        <div className="mb-3">
+                            <label className="form-label">User Name</label>
+                            <input type="text" className="form-control" name="usertemperature"
+                                value={this.state.usertemperature} onChange={this.handleChange} />
+                        </div>
+                    </div>
+                );
+            }
+        }
+        class App extends React.Component {
+            constructor(props) {
+                super(props)
+            }
+            render() {
+                return (
+                    <div>
+                        <Introdiv name="Sara" />
+                        <Functform />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>

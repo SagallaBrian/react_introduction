@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials</title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+        const userob = {
+            fname: "Brian",
+            sname: "Lwatati",
+            profi: "https://www.api.komplab.com/images/img14.jpg",
+            jobde: {
+                occupation: "Full Stack Developer",
+                company: "Komplab",
+                website: "https://www.staff.komplab.com/briansagalla"
+            },
+            educt: {
+                institution: "JKUAT",
+                course: "BSc. Computer Technology",
+                timeperiod: "May 2015 - August 2019"
+            }
+        };
+
+        function Introdiv(props) {
+            if (props) {
+                return (
+                    <div className="Intro_Div">
+                        <h1 className="display-4 text-primary">Welcome to React, {props.name}</h1>
+                    </div>
+                );
+            }
+            return (
+                <div className="Intro_Div">
+                    <h1 className="display-4,text-primary">Welcome to React, Stranger</h1>
+                </div>
+            );
+        }
+
+        function UserInfo(props) {
+            return (
+                <div className="UserInfo_Div text-secondary pt-4">
+                    <h2>Personal Information</h2>
+                    <h3 className="text-success">User Name: {props.firstname} {props.secondnam}</h3>
+                    <div className="row">
+                        <div className="col-md-5">
+                            <p><img className="img-fluid" src={props.profilepic} /></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function EducaInfo(props) {
+            return (
+                <div className="EducaInfo_Div pt-4 text-secondary">
+                    <h2>Education Information</h2>
+                    <h4 className="font-weight-normal">
+                        Institution: <span className="text-success">{props.education.institution}</span>
+                    </h4>
+                    <h4 className="font-weight-normal">
+                        Course : <span className="text-success">{props.education.course}</span>
+                    </h4>
+                    <h4 className="font-weight-normal">
+                        Duration: <span className="text-success">{props.education.timeperiod}</span>
+                    </h4>
+                </div>
+            );
+        }
+
+        class WorkInfo extends React.Component {
+            render() {
+                return (
+                    <div className="WorkInfo_Div pt-4 text-secondary">
+                        <h2>Work Information</h2>
+                        <h4 className="font-weight-normal">
+                            Title: <span className="text-success">{this.props.works.occupation}</span>
+                        </h4>
+                        <h4 className="font-weight-normal">
+                            Company : <span className="text-success">{this.props.works.company}</span>
+                        </h4>
+                        <h4 className="font-weight-normal">
+                            Portfolio: <span className="text-success">{this.props.works.website}</span>
+                        </h4>
+                    </div>
+                );
+            }
+        }
+
+
+        class App extends React.Component {
+            constructor(props){
+                super(props)
+            }
+            render() {
+                return (
+                    <div>
+                        <Introdiv name="Sara" />
+                        <UserInfo firstname={userob.fname} secondnam={userob.sname} profilepic={userob.profi} />
+                        <EducaInfo education={userob.educt} />
+                        <WorkInfo works={userob.jobde} />
+
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>

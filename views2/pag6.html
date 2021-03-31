@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>React Tutorials - State lift </title>
+    <link rel="shortcut icon" type="image/png" href="favicon" />
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-lg">
+        <div class="py-5">
+            <div id="root"></div>
+        </div>
+    </div>
+    <script type="text/babel">
+        function Introdiv(props) {
+            return (
+                <div className="Intro_Div">
+                    <h1 className="display-4 text-primary"> State lift </h1>
+                </div>
+            );
+        }
+        class Chekboil extends React.Component {
+            constructor(props) {
+                super(props)
+                this.chanparent = this.chanparent.bind(this);
+
+            }
+
+            chanparent (event){
+                // console.log(event.target) // This displays the input element
+                this.props.tempchange(event.target.value) ;
+            }
+            render() {
+                const proptemp = this.props.temppass;
+
+                return (
+                    <div className="pb-5">
+                        <h4 className="fw-normal text-danger">This is Section {this.props.sectio}</h4>
+                        <div className="mb-3">
+                            <label className="form-label">Enter Temperature</label>
+                            <input type="text" className="form-control" 
+                                value={proptemp} onChange={this.chanparent} />
+                        </div>
+                    </div>
+                );
+
+            }
+
+        }
+        class Chekboil2 extends React.Component {
+            constructor(props) {
+                super(props)
+                this.chanparent = this.chanparent.bind(this);
+
+            }
+
+            chanparent (event){
+
+                this.props.tempchange(event.target.value) ;
+            }
+            render() {
+                const proptemp = this.props.temppass;
+
+                return (
+                    <div className="pb-5">
+                        <h4 className="fw-normal text-danger">This is Section X</h4>
+                        <div className="mb-3">
+                            <label className="form-label">Enter Temperature</label>
+                            <input type="text" className="form-control" 
+                                value={proptemp} onChange={this.chanparent} />
+                        </div>
+                    </div>
+                );
+
+            }
+
+        }
+
+        class Functform extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    usertemperature: '',
+                }
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(chektodisp) {
+                this.setState({
+                    usertemperature: chektodisp
+                });
+
+            }
+
+
+            render() {
+                const chektodisp = this.state.usertemperature;
+                let datatobisp;
+                if (chektodisp >= 100) {
+                    datatobisp = <h4 className="text-success">The boiling point reached</h4>;
+                } else {
+                    datatobisp = <h4 className="text-danger">The the boiling is not point reached</h4>;
+                }
+                return (
+                    <div>
+                        <Chekboil tempchange={this.handleChange}  temppass={chektodisp} sectio="A" />
+                        <Chekboil tempchange={this.handleChange}  temppass={chektodisp} sectio="B" />
+                        <Chekboil2 tempchange={this.handleChange}  temppass={chektodisp} />
+                        
+                        {datatobisp}
+                    </div>
+                );
+            }
+        }
+        class App extends React.Component {
+            constructor(props) {
+                super(props)
+            }
+            render() {
+                return (
+                    <div>
+                        <Introdiv name="Sara" />
+                        <Functform />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+
+    </script>
+</body>
+
+</html>
